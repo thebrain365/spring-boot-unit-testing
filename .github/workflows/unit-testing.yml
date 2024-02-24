@@ -21,6 +21,4 @@ jobs:
           java-version: '21'
 
       - name: Testing
-        run: |
-          chmod +x mvnw
-          ./mvnw test
+        run: ./mvnw test
