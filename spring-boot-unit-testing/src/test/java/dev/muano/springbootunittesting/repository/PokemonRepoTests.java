@@ -60,6 +60,20 @@ public class PokemonRepoTests {
         Assertions.assertThat(pokemonList).isNotNull();
         Assertions.assertThat(pokemonList.size()).isEqualTo(2);
     }
+
+    @Test
+    public void PokemonRepo_FindById_ReturnsAPokemonById() {
+        Pokemon pokemon = Pokemon.builder()
+                .name("pikachu")
+                .type("electric")
+                .build();
+
+        pokemonRepo.save(pokemon);
+
+        Pokemon returnedPokemon = pokemonRepo.findById(pokemon.getId()).get();
+
+        Assertions.assertThat(returnedPokemon).isNotNull();
+    }
 }
 
 
