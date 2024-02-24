@@ -24,5 +24,8 @@ jobs:
         run: |
           pwd
           ls
+          cd spring-boot-unit-testing
+          pwd
+          ls
           chmod +x mvnw
           ./mvnw test
