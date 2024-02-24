@@ -35,10 +35,7 @@ public class ReviewRepoTests {
         Review savedReview = reviewRepo.save(review);
 
         //Assert
-        Assertions.assertThat(review.getTitle()).isEqualTo(review.getTitle());
-        Assertions.assertThat(review.getContent()).isEqualTo(review.getContent());
-        Assertions.assertThat(review.getStars()).isEqualTo(review.getStars());
-        Assertions.assertThat(review.getId()).isEqualTo(review.getId());
+        Assertions.assertThat(savedReview).isEqualTo(review);
     }
 
     @Test
@@ -64,38 +61,39 @@ public class ReviewRepoTests {
         List<Review> reviewList = reviewRepo.findAll();
 
         //Assert
-        Assertions.assertThat(reviewList).isNotNull();
         Assertions.assertThat(reviewList.size()).isEqualTo(2);
     }
 
-//    @Test
-//    public void ReviewRepo_FindById_ReturnsReviewById() {
-//        Pokemon pokemon = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        pokemonRepo.save(pokemon);
-//
-//        Pokemon returnedPokemon = pokemonRepo.findById(pokemon.getId()).get();
-//
-//        Assertions.assertThat(returnedPokemon).isNotNull();
-//    }
-//
-//    @Test
-//    public void ReviewRepo_FindByType_ReturnsReviewByType() {
-//        Pokemon pokemon = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        pokemonRepo.save(pokemon);
-//
-//        Pokemon returnedPokemon = pokemonRepo.findByType(pokemon.getType()).get();
-//
-//        Assertions.assertThat(returnedPokemon).isNotNull();
-//    }
-//
+    @Test
+    public void ReviewRepo_FindById_ReturnsReviewById() {
+        Review review = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        reviewRepo.save(review);
+
+        Review returnedReview = reviewRepo.findById(review.getId()).get();
+
+        Assertions.assertThat(returnedReview).isNotNull();
+    }
+
+    @Test
+    public void ReviewRepo_FindByTitle_ReturnsReviewByTitle() {
+        Review review = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        reviewRepo.save(review);
+
+        Review returnedReview = reviewRepo.findByTitle(review.getTitle()).get();
+
+        Assertions.assertThat(returnedReview).isEqualTo(review);
+    }
+
 //    @Test
 //    public void ReviewRepo_Update_ReturnsUpdatedReview() {
 //        Pokemon pokemon = Pokemon.builder()
