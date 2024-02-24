@@ -23,5 +23,6 @@ jobs:
       - name: Testing
         run: |
           pwd
+          ls
           chmod +x mvnw
           ./mvnw test
