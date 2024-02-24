@@ -114,20 +114,21 @@ public class ReviewRepoTests {
         Assertions.assertThat(updatedReview).isEqualTo(returnedReview);
     }
 
-//    @Test
-//    public void ReviewRepo_DeleteById_DeletesReview() {
-//        Pokemon pokemon = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        pokemonRepo.save(pokemon);
-//
-//        pokemonRepo.deleteById(pokemon.getId());
-//        Optional<Pokemon> returnedPokemon = pokemonRepo.findById(pokemon.getId());
-//
-//        Assertions.assertThat(returnedPokemon).isEmpty();
-//    }
+    @Test
+    public void ReviewRepo_DeleteById_DeletesReview() {
+        Review review = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        reviewRepo.save(review);
+
+        reviewRepo.deleteById(review.getId());
+        Optional<Review> returnedReview = reviewRepo.findById(review.getId());
+
+        Assertions.assertThat(returnedReview).isEmpty();
+    }
 }
 
 
