@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,4 +24,4 @@ jobs:
         run: |
           cd spring-boot-unit-testing
           chmod +x mvnw
-          .mvn/wrapper/maven-wrapper.jar test
+          ./mvnw test
