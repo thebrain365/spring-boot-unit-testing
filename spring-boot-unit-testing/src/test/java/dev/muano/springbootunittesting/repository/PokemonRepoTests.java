@@ -9,6 +9,9 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class PokemonRepoTests {
@@ -31,6 +34,45 @@ public class PokemonRepoTests {
         //Assert
         Assertions.assertThat(pokemon).isNotNull();
         Assertions.assertThat(pokemon.getId()).isGreaterThan(0);
+    }
+
+    @Test
+    public void PokemonRepo_GetAll_ReturnMoreThanOnePokemon() {
+
+        //Arrange
+        Pokemon pokemon = Pokemon.builder()
+                .name("pikachu")
+                .type("electric")
+                .build();
+
+        Pokemon pokemon2 = Pokemon.builder()
+                .name("pikachu")
+                .type("electric")
+                .build();
+
+        pokemonRepo.save(pokemon);
+        pokemonRepo.save(pokemon2);
+
+        //Act
+        List<Pokemon> pokemonList = pokemonRepo.findAll();
+
+        //Assert
+        Assertions.assertThat(pokemonList).isNotNull();
+        Assertions.assertThat(pokemonList.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void PokemonRepo_FindById_ReturnsAPokemonById() {
+        Pokemon pokemon = Pokemon.builder()
+                .name("pikachu")
+                .type("electric")
+                .build();
+
+        pokemonRepo.save(pokemon);
+
+        Pokemon returnedPokemon = pokemonRepo.findById(pokemon.getId()).get();
+
+        Assertions.assertThat(returnedPokemon).isNotNull();
     }
 }
 
