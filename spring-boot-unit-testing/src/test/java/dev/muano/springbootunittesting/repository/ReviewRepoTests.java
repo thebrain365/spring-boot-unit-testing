@@ -41,31 +41,33 @@ public class ReviewRepoTests {
         Assertions.assertThat(review.getId()).isEqualTo(review.getId());
     }
 
-//    @Test
-//    public void ReviewRepo_GetAll_ReturnMoreThanOneReview() {
-//
-//        //Arrange
-//        Pokemon pokemon = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        Pokemon pokemon2 = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        pokemonRepo.save(pokemon);
-//        pokemonRepo.save(pokemon2);
-//
-//        //Act
-//        List<Pokemon> pokemonList = pokemonRepo.findAll();
-//
-//        //Assert
-//        Assertions.assertThat(pokemonList).isNotNull();
-//        Assertions.assertThat(pokemonList.size()).isEqualTo(2);
-//    }
-//
+    @Test
+    public void ReviewRepo_GetAll_ReturnMoreThanOneReview() {
+
+        //Arrange
+        Review review = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        Review review2 = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        reviewRepo.save(review);
+        reviewRepo.save(review2);
+
+        //Act
+        List<Review> reviewList = reviewRepo.findAll();
+
+        //Assert
+        Assertions.assertThat(reviewList).isNotNull();
+        Assertions.assertThat(reviewList.size()).isEqualTo(2);
+    }
+
 //    @Test
 //    public void ReviewRepo_FindById_ReturnsReviewById() {
 //        Pokemon pokemon = Pokemon.builder()
