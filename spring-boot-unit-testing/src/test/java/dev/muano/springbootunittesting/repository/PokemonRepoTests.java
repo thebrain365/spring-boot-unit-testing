@@ -74,6 +74,20 @@ public class PokemonRepoTests {
 
         Assertions.assertThat(returnedPokemon).isNotNull();
     }
+
+    @Test
+    public void PokemonRepo_FindByType_ReturnPokemonByType() {
+        Pokemon pokemon = Pokemon.builder()
+                .name("pikachu")
+                .type("electric")
+                .build();
+
+        pokemonRepo.save(pokemon);
+
+        Pokemon returnedPokemon = pokemonRepo.findByType(pokemon.getType()).get();
+
+        Assertions.assertThat(returnedPokemon).isNotNull();
+    }
 }
 
 
