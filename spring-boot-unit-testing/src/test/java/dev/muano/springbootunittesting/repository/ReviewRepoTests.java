@@ -94,26 +94,26 @@ public class ReviewRepoTests {
         Assertions.assertThat(returnedReview).isEqualTo(review);
     }
 
-//    @Test
-//    public void ReviewRepo_Update_ReturnsUpdatedReview() {
-//        Pokemon pokemon = Pokemon.builder()
-//                .name("pikachu")
-//                .type("electric")
-//                .build();
-//
-//        pokemonRepo.save(pokemon);
-//
-//        Pokemon returnedPokemon = pokemonRepo.findById(pokemon.getId()).get();
-//        returnedPokemon.setName("Raichu");
-//        returnedPokemon.setType("Fire");
-//
-//        Pokemon updatedPokemon = pokemonRepo.save(returnedPokemon);
-//
-//        Assertions.assertThat(returnedPokemon.getName()).isEqualTo("Raichu");
-//        Assertions.assertThat(returnedPokemon.getType()).isEqualTo("Fire");
-//        Assertions.assertThat(returnedPokemon.getId()).isEqualTo(pokemon.getId());
-//    }
-//
+    @Test
+    public void ReviewRepo_Update_ReturnsUpdatedReview() {
+        Review review = Review.builder()
+                .title("title")
+                .content("content")
+                .stars(5)
+                .build();
+
+        reviewRepo.save(review);
+
+        Review returnedReview = reviewRepo.findById(review.getId()).get();
+        returnedReview.setTitle("new title");
+        returnedReview.setContent("new content");
+        returnedReview.setStars(4);
+
+        Review updatedReview = reviewRepo.save(returnedReview);
+
+        Assertions.assertThat(updatedReview).isEqualTo(returnedReview);
+    }
+
 //    @Test
 //    public void ReviewRepo_DeleteById_DeletesReview() {
 //        Pokemon pokemon = Pokemon.builder()
